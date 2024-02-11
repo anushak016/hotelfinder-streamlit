@@ -49,7 +49,7 @@ def run():
     )
 
     with st.container(border=True):
-      st.markdown('<h1 style="text-align: center; color: #89CFF0; font-family: sans-serif;">Paris Hotel Finder</h1>', unsafe_allow_html=True)
+      st.markdown('<h1 style="text-align: center; color: #89CFF0; font-family: sans-serif;">NYC Hotel Finder</h1>', unsafe_allow_html=True)
 
     data = st.text_input('Find a hotel that fits:',placeholder='Search...')
 

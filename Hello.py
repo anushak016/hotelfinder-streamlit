@@ -17,34 +17,49 @@ from streamlit.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
+def display():
+    hotel = [{'hotel_name': "hotel name", 'hotel_description':"wonderful!", 'rating_value': 5, 'hotel_image':"https://media-cdn.tripadvisor.com/media/photo-s/1c/02/78/ba/romance-istanbul-hotel.jpg",'price_range': '$', 'review_count': 2024,'hotel_url': "https://www.tripadvisor.com/Hotel_Review-g293974-d8364987-Reviews-Romance_Istanbul_Hotel-Istanbul.html"}]
+    #example data
+
+    for x in range(len(hotel)):
+        hotelName = hotel[x]['hotel_name']
+        hotelDescription = hotel[x]['hotel_description']
+        hotelImage = hotel[x]['hotel_image']
+        priceRange = hotel[x]['price_range']
+        ratingValue = hotel[x]['rating_value']
+        reviewCount = hotel[x]['review_count']
+        hotelUrl = hotel[x]['hotel_url']
+        #reason = decoder_results
+        
+
+        with st.container(border=True):
+            col1, col2 = st.columns([0.6,0.4])
+            with col1:
+                st.markdown(hotelName)
+                st.markdown("**Price:** {} |  **Rating:** {}:star: | {:,} reviews".format(priceRange, ratingValue, reviewCount))
+                st.markdown(hotelDescription)
+                #st.markdown("Why we chose this for you: " + reason)
+                st.page_link(hotelUrl, label = "***Interested?***")
+            with col2:
+                st.image(hotelImage)
 
 def run():
     st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
+        page_title="Hotels",
     )
 
-    st.write("# Welcome to Streamlit! 👋")
+    with st.container(border=True):
+      st.markdown('<h1 style="text-align: center; color: #89CFF0; font-family: sans-serif;">Paris Hotel Finder</h1>', unsafe_allow_html=True)
 
-    st.sidebar.success("Select a demo above.")
+    data = st.text_input('Find a hotel that fits:',placeholder='Search...')
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+    #results = import from other file
+    results = {1,2,3}
+
+    if results == {}:
+        st.error("Hmm.. no results found. Search again?")
+    else:
+        display()
 
 
 if __name__ == "__main__":
